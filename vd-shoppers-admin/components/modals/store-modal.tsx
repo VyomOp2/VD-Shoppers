@@ -67,7 +67,7 @@ export const StoreModal = () => {
 								variant="outline"
 								onClick={storeModal.onClose}
 							>
-								Cancel
+							Cancel
 							</Button>
 							<Button type="submit">Continue</Button>
 						</div>
