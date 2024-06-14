@@ -5,8 +5,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
 	try {
-		const { userId } = auth();
 		const body = await req.json();
+		const { userId } = auth();
 		const { name } = body;
 
 		if (!userId) {
@@ -22,7 +22,9 @@ export async function POST(req: Request) {
 				userId,
 				name
 			}
-		})
+		});
+
+		return NextResponse.json(store);
 
 	} catch (error) {
 		return new NextResponse("Internal Error", { status: 500 });
