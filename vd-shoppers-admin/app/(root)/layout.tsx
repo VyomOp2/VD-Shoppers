@@ -13,6 +13,8 @@ export default async function SetupLayout({
 		redirect("/sign-in");
 	}
 
+	const billboard = prismaDB.billboard	
+
 	const store = await prismaDB.store.findFirst({
 		where: {
 			userId,
