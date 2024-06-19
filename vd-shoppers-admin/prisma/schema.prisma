@@ -30,4 +30,5 @@ model Billboard {
   imageURL          String
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
+  @@index([storeId])
 }

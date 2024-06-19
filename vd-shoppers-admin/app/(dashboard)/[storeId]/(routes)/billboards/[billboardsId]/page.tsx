@@ -15,11 +15,11 @@ const BillboardsPage = async ({
 	return (
 		<div className="flex-col">
 			<div className="flex-1 space-y-4 p-8 pt-6">
-				<BillboardsForm initialData={billboards} />
+				{/* <BillboardsForm initialData={billboards} /> */}
+				<div>Existing Billboard : {billboards?.label}</div>
 			</div>
 		</div>
 	);
 };
 
 export default BillboardsPage;
-

@@ -136,7 +136,7 @@ export const BillboardsForm: React.FC<BillboardsFormProps> = ({ initialData }) =
 					</div>
 					<Button
 						disabled={loading}
-						className="mll-auto"
+						className="ml-auto"
 						type="submit"
 					>
 						{action}
@@ -147,4 +147,3 @@ export const BillboardsForm: React.FC<BillboardsFormProps> = ({ initialData }) =
 		</>
 	);
 };
-
