@@ -1,25 +1,15 @@
 import prismaDB from "@/lib/prismaDB";
-import { BillboardsForm } from "./components/billboards-form";
 
-const BillboardsPage = async ({
+const BillboardPage = async ({
 	params,
 }: {
-	params: { billboardsId: string };
+	params: { billboardId: string };
 }) => {
 	const billboards = await prismaDB.billboard.findUnique({
-		where: {
-			id: params.billboardsId,
-		},
+		where: { id: params.billboardId },
 	});
 
-	return (
-		<div className="flex-col">
-			<div className="flex-1 space-y-4 p-8 pt-6">
-				{/* <BillboardsForm initialData={billboards} /> */}
-				<div>Existing Billboard : {billboards?.label}</div>
-			</div>
-		</div>
-	);
+	return <div>Existing Billboard : {billboards?.label}</div>;
 };
 
-export default BillboardsPage;
+export default BillboardPage;
