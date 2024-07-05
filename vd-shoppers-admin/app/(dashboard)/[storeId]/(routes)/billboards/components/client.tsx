@@ -14,14 +14,14 @@ export const BillboardClient = () => {
 
 	return (
 		<>
-			<div className="flex items-center justify-between">
+			<div className="flex items-center justify-between mr-4">
 				<Heading
                     title="Billboards (0)"
                     description="Manage your Bilboards"
                 />
                 <Button onClick={() => router.push(`/${params.storeId}/billboards/new`)}>
                     <Plus className="mr-2 h-5 w-5" />
-                    Add New Billboard
+                    Add New
                 </Button>
 			</div>
             <Separator />
