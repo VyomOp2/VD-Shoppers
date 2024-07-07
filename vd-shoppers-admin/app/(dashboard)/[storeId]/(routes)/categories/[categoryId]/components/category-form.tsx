@@ -72,8 +72,8 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData , billbo
 			} else {
 				await axios.post(`/api/${params.storeId}/categories`, data);
 			}
-			router.refresh();
 			router.push(`/${params.storeId}/categories`);
+			router.refresh();
 			toast.success(toastMessage);
 		} catch (error) {
 			toast.error("Something went wrong.");
@@ -88,8 +88,8 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData , billbo
 			await axios.delete(
 				`/api/${params.storeId}/categories/${params.categoryId}`
 			);
-			router.refresh();
 			router.push(`/${params.storeId}/categories`);
+			router.refresh();
 			toast.success("Category Deleted.");
 		} catch (error) {
 			toast.error(

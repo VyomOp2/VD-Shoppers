@@ -19,10 +19,10 @@ import axios from "axios";
 
 
 interface CellActionProps {
-	data: CategoryColumn;
+	data_categories: CategoryColumn;
 }
 
-export const CellAction: React.FC<CellActionProps> = ({ data }) => {
+export const CellAction_categories: React.FC<CellActionProps> = ({ data_categories }) => {
 	const router = useRouter();
 	const params = useParams();
 
@@ -38,7 +38,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 		try {
 			setLoading(true);
 			await axios.delete(
-				`/api/${params.storeId}/categories/${data.id}`
+				`/api/${params.storeId}/categories/${data_categories.id}`
 			);
 			router.refresh();
 			toast.success("Category Deleted.");
@@ -73,7 +73,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 						Actions
 					</DropdownMenuLabel>
 					
-					<DropdownMenuItem onClick={() => onCopy(data.id)}>
+					<DropdownMenuItem onClick={() => onCopy(data_categories.id)}>
 						<Copy className="mr-2 h-4 w-4" />
 						Copy ID
 					</DropdownMenuItem>
@@ -81,7 +81,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 					<DropdownMenuItem
 						onClick={() =>
 							router.push(
-								`/${params.storeId}/categories/${data.id}`
+								`/${params.storeId}/categories/${data_categories.id}`
 							)
 						}
 					>

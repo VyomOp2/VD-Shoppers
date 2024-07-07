@@ -15,10 +15,10 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { CategoryCloumn } from "../../categories/components/columns";
+import { BillboardCloumn } from "./columns";
 
 interface CellActionProps {
-	data: CategoryCloumn;
+	data: BillboardCloumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { CellAction } from "@/app/(dashboard)/[storeId]/(routes)/billboards/components/cell-actions";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown } from "lucide-react"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.

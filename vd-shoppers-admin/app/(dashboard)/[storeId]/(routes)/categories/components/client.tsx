@@ -6,12 +6,12 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { CategoryCloumn, columns } from "./columns";
+import { CategoryColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 import { ApiList } from "@/components/ui/api-list";
 
 interface CategoryClientProps {
-	data: CategoryCloumn[];
+	data: CategoryColumn[];
 }
 
 export const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
