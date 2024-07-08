@@ -21,7 +21,7 @@ export async function POST(
 		}
 
 		if (!value) {
-			return new NextResponse("Value is Required", { status: 400 });
+			return new NextResponse("Hex Code is Required", { status: 400 });
 		}
 
 		if (!params.storeId) {
@@ -39,7 +39,7 @@ export async function POST(
             return new NextResponse("Unauthorized" , {status: 403 })
         }
 
-		const size = await prismaDB.size.create({
+		const color = await prismaDB.color.create({
 			data: {
 				name,
 				value,
@@ -47,9 +47,9 @@ export async function POST(
 			},
 		});
 
-		return NextResponse.json(size);
+		return NextResponse.json(color);
 	} catch (error) {
-		return new NextResponse("SIZE Error", { status: 500 });
+		return new NextResponse("COLOR Error", { status: 500 });
 	}
 }
 
@@ -62,14 +62,14 @@ export async function GET(
 			return new NextResponse("Store ID is Required", { status: 400 });
 		}
 
-		const sizes = await prismaDB.size.findMany({
+		const colors = await prismaDB.color.findMany({
 			where : {
                 storeId : params.storeId
             }
 		});
 
-		return NextResponse.json(sizes);
+		return NextResponse.json(colors);
 	} catch (error) {
-		return new NextResponse("SIZE Error", { status: 500 });
+		return new NextResponse("COLOR Error", { status: 500 });
 	}
 }
