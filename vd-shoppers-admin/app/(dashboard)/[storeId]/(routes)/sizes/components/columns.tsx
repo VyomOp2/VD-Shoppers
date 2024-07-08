@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CellAction } from "@/app/(dashboard)/[storeId]/(routes)/billboards/components/cell-actions";
+import { CellAction } from "@/app/(dashboard)/[storeId]/(routes)/sizes/components/cell-actions";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react"
 

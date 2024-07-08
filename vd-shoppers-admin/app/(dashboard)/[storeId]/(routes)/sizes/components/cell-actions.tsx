@@ -15,10 +15,10 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { BillboardCloumn } from "./columns";
+import { SizeColumn } from "@/app/(dashboard)/[storeId]/(routes)/sizes/components/columns";
 
 interface CellActionProps {
-	data: BillboardCloumn;
+	data: SizeColumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -37,13 +37,13 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 		try {
 			setLoading(true);
 			await axios.delete(
-				`/api/${params.storeId}/billboards/${data.id}`
+				`/api/${params.storeId}/sizes/${data.id}`
 			);
 			router.refresh();
-			toast.success("Billboard Deleted.");
+			toast.success("Size Deleted.");
 		} catch (error) {
 			toast.error(
-				"Make sure you removed all categories using this Billboard first."
+				"Make sure you removed all Products of this Size first."
 			);
 		} finally {
 			setLoading(false);
@@ -75,7 +75,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 					<DropdownMenuItem
 						onClick={() =>
 							router.push(
-								`/${params.storeId}/billboards/${data.id}`
+								`/${params.storeId}/sizes/${data.id}`
 							)
 						}
 					>
