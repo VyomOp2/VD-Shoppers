@@ -1,10 +1,10 @@
 import prismaDB from "@/lib/prismaDB";
 import { auth } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-	_req: Request,
-	{ params }: { params: { storeId: string , productId : string } }
+	_req: NextRequest,
+	{ params }: { params: { productId : string } }
 ) {
 	try {
 
@@ -38,6 +38,7 @@ export async function PATCH(
 	try {
 		const { userId } = auth();
 		const body = await req.json();
+
 		const { 
 			name,
 			price,
@@ -56,7 +57,15 @@ export async function PATCH(
 		if (!name) {
 			return new NextResponse("Name is Required", { status: 400 });
 		}
-
+		
+		if ( !images ) {
+				return new NextResponse("Images are Required", { status: 400 });
+		}
+		
+		if (!price) {
+			return new NextResponse("Price is Required", { status: 400 });
+		}
+		
 		if (!categoryId) {
 			return new NextResponse("Category ID is Required", { status: 400 });
 		}
@@ -69,8 +78,8 @@ export async function PATCH(
 			return new NextResponse("Size ID is Required", { status: 400 });
 		}
 
-		if (!images || !images.lenght) {
-			return new NextResponse("Images are Required", { status: 400 });
+		if (!params.productId) {
+			return new NextResponse("Store ID are Required", { status: 400 });
 		}
 
 		const storeByuserId = await prismaDB.store.findFirst({

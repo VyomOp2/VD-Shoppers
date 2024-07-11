@@ -50,10 +50,7 @@ type ProductFormValues = z.infer<typeof formSchema>;
 
 interface ProductFormProps {
 	initialData:
-		| (Product & {
-				images: Image[];
-		  })
-		| null;
+		Product & { images: Image[] } | null;
 	categories: Category[];
 	sizes: Size[];
 	colors: Color[];
@@ -96,44 +93,42 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 	});
 
 	const onSubmit = async (data: ProductFormValues) => {
-		try {
-			setLoading(true);
-			if (initialData) {
-				await axios.patch(
-					`/api/${params.storeId}/products/${params.productId}`,
-					data
-				);
-			} else {
-				await axios.post(`/api/${params.storeId}/products`, data);
-			}
-			router.push(`/${params.storeId}/products`);
-			router.refresh();
-			toast.success(toastMessage);
-		} catch (error) {
-			toast.error("Something went wrong.");
-		} finally {
-			setLoading(false);
-		}
-	};
+        try {
+            setLoading(true);
+            if (initialData) {
+                await axios.patch(
+                    `/api/${params.storeId}/products/${params.productId}`,
+                    data
+                );
+            } else {
+                await axios.post(`/api/${params.storeId}/products`, data);
+            }
+            router.push(`/${params.storeId}/products`);
+            router.refresh();
+            toast.success(toastMessage);
+        } catch (error) {
+            toast.error("Error creating/updating product. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
-	const onDelete = async () => {
-		try {
-			setLoading(true);
-			await axios.delete(
-				`/api/${params.storeId}/products/${params.productId}`
-			);
-			router.push(`/${params.storeId}/products`);
-			router.refresh();
-			toast.success("Product Deleted.");
-		} catch (error) {
-			toast.error(
-				"Something went Wrong."
-			);
-		} finally {
-			setLoading(false);
-			setOpen(false);
-		}
-	};
+    const onDelete = async () => {
+        try {
+            setLoading(true);
+            await axios.delete(
+                `/api/${params.storeId}/products/${params.productId}`
+            );
+            router.push(`/${params.storeId}/products`);
+            router.refresh();
+            toast.success("Product Deleted.");
+        } catch (error) {
+            toast.error("Error deleting product. Please try again.");
+        } finally {
+            setLoading(false);
+            setOpen(false);
+        }
+    };
 
 	return (
 		<>
@@ -350,6 +345,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 									<FormControl>
 										<Checkbox
 											checked={field.value}
+											// @ts-ignore
 											onCheckedChange={field.onChange}
 										/>
 									</FormControl>
@@ -372,6 +368,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 									<FormControl>
 										<Checkbox
 											checked={field.value}
+											// @ts-ignore
 											onCheckedChange={field.onChange}
 										/>
 									</FormControl>

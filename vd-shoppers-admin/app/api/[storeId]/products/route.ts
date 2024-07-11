@@ -1,17 +1,16 @@
 import prismaDB from "@/lib/prismaDB";
 
 import { auth } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
-import { isUndefined } from "util";
-import { string } from "zod";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
-	req: Request,
+	req: NextRequest,
 	{ params }: { params: { storeId: string } }
 ) {
 	try {
 		const body = await req.json();
 		const { userId } = auth();
+
 		const { 
 			name,
 			price,
@@ -30,7 +29,15 @@ export async function POST(
 		if (!name) {
 			return new NextResponse("Name is Required", { status: 400 });
 		}
-
+		
+		if ( !images ) {
+				return new NextResponse("Images are Required", { status: 400 });
+		}
+		
+		if (!price) {
+			return new NextResponse("Price is Required", { status: 400 });
+		}
+		
 		if (!categoryId) {
 			return new NextResponse("Category ID is Required", { status: 400 });
 		}
@@ -43,8 +50,8 @@ export async function POST(
 			return new NextResponse("Size ID is Required", { status: 400 });
 		}
 
-		if (!images || !images.lenght) {
-			return new NextResponse("Images are Required", { status: 400 });
+		if (!params.storeId) {
+			return new NextResponse("Store ID are Required", { status: 400 });
 		}
 
         const storeByuserId = await prismaDB.store.findFirst({
